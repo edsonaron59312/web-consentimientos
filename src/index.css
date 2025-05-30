@@ -1,0 +1,106 @@
+/* src/index.css */
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f0f2f5; /* Color de fondo base general */
+}
+
+#root {
+  min-height: 100vh;
+  display: flex; 
+  flex-direction: column; 
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color; 
+}
+
+/* --- NUEVO: Estilos para Transiciones de Página --- */
+/* Estas clases se pueden aplicar al contenedor del Outlet o a los componentes de página */
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(15px); /* Comienza ligeramente abajo */
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+/* Para aplicar la animación de entrada a los componentes renderizados por el Outlet */
+/* Asumimos que el Outlet está dentro de un <main id="mainContentArea"> 
+   y que los componentes de página son hijos directos o están envueltos en un div/Container.
+   Este selector es genérico; podría necesitar ajustarse si la estructura es diferente.
+*/
+#mainContentArea > * { /* Aplica a los hijos directos del área de contenido */
+  animation: fadeInAndUp 0.4s ease-out forwards;
+}
+
+@keyframes fadeInAndUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Si usas React Transition Group, estas clases serían más relevantes: */
+/*
+.fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 300ms, transform 300ms;
+}
+*/
